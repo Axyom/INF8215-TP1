@@ -27,3 +27,21 @@ class Solution:
         self.g += self.graph[self.visited[-1], self.not_visited[idx]]
         self.visited.append(self.not_visited[idx])
         del self.not_visited[idx]
+        
+    def swap(self, i, j): # permute la position de deux noeuds dans la solution
+        # i et j ne doivent pas etre egaux a 0 ou a len(s.visited)
+        # on met a jour le cout total
+        # indice i
+        if i != j:
+            self.g -= self.graph[self.visited[i-1],self.visited[i]] + self.graph[self.visited[i],self.visited[i+1]]
+            self.g += self.graph[self.visited[i-1],self.visited[j]] + self.graph[self.visited[j],self.visited[i+1]]
+            # indice j
+            self.g -= self.graph[self.visited[j-1],self.visited[j]] + self.graph[self.visited[j],self.visited[j+1]]
+            self.g += self.graph[self.visited[j-1],self.visited[i]] + self.graph[self.visited[i],self.visited[j+1]]
+            # on permute les elements
+            self.visited[i], self.visited[j] = self.visited[j], self.visited[i]
+        
+            
+            
+        
+        
