@@ -33,9 +33,10 @@ def shaking(sol, k):
     """
     s = copy.deepcopy(sol)
     
-    for kk in range(k):
+    for _ in range(k):
         i = randint(1, len(s.visited)-2)
         j = choice([x for x in range(1,len(s.visited)-1) if x != i])
+    
         s.swap(i,j)
         
     return s;
@@ -44,12 +45,11 @@ def local_search_2opt(sol):
     """
     Apply 2-opt local search over sol
     """
-    # indices = [(i,j) for (i,j) in (sol.visited[1:-1],sol.visited[1:-1]) if i+1<j and j<len(sol.visited)-1]
     
     sol_opt_local = sol
     
-    for i in range(1,len(sol.visited)-3):
-        for j in range(i+2,len(sol.visited)-1):
+    for i in range(1,len(sol.visited)-2):
+        for j in range(i+1,len(sol.visited)-1):
             s = copy.deepcopy(sol)
             # on swappe deux aretes
             s.swap(i,j)
